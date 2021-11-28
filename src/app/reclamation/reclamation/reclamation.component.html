@@ -1,0 +1,155 @@
+<!-- start page content -->
+<div class="page-content-wrapper">
+  <div class="page-content">
+    <div class="page-bar">
+      <div class="page-title-breadcrumb">
+        <div class=" pull-left">
+          <div class="page-title">Ajouter une réclamation</div>
+        </div>
+        <ol class="breadcrumb page-breadcrumb pull-right">
+<!--          <li><i class="fa fa-home"></i>&nbsp;<a class="parent-item"-->
+<!--                                                 href="index-2.html">Home</a>&nbsp;<i class="fa fa-angle-right"></i>-->
+<!--          </li>-->
+<!--          <li><a class="parent-item" href="#">Library</a>&nbsp;<i class="fa fa-angle-right"></i>-->
+<!--          </li>-->
+        </ol>
+      </div>
+    </div>
+    <div class="row" *ngIf="show_section_demande" >
+      <div class="col-sm-12">
+        <div class="card-box px-5 mx-5">
+          <div class="card-head">
+<!--            <header>Add Library Assets</header>-->
+<!--            <button id="panel-button"-->
+<!--                    class="mdl-button mdl-js-button mdl-button&#45;&#45;icon pull-right"-->
+<!--                    data-upgraded=",MaterialButton">-->
+<!--              <i class="material-icons">more_vert</i>-->
+<!--            </button>-->
+<!--            <ul class="mdl-menu mdl-menu&#45;&#45;bottom-right mdl-js-menu mdl-js-ripple-effect"-->
+<!--                data-mdl-for="panel-button">-->
+<!--              <li class="mdl-menu__item"><i class="material-icons">assistant_photo</i>Action-->
+<!--              </li>-->
+<!--              <li class="mdl-menu__item"><i class="material-icons">print</i>Another action-->
+<!--              </li>-->
+<!--              <li class="mdl-menu__item"><i class="material-icons">favorite</i>Something else-->
+<!--                here</li>-->
+<!--            </ul>-->
+          </div>
+          <div class="card-body row">
+           <form class="row" [formGroup]="reclamtionForm" (ngSubmit)="save_reclamation()">
+
+              <div class="col-lg-6 p-t-20">  
+                  <label> Etablissement :</label>
+                 <input type="text"  formControlName="id_etablissement" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock" [ngClass]="{ 'is-invalid': submitted && f.id_etablissement.errors }">
+                  <div *ngIf="submitted && f.id_etablissement.errors" class="invalid-feedback">
+                    <div *ngIf="f.id_etablissement.errors.required">etablissement is required</div>
+                </div> 
+              </div>
+              
+           
+               
+              <div class="col-lg-6 p-t-20">
+                <label for="inputPassword5" class="form-label">Demandeur : </label>
+                <!-- {{user_connect.lastName}} -->
+                 <input type="text" formControlName="id_demandeur" value={{user_connect.firstName}} id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock">
+             </div>   
+              <div class="col-lg-6 p-t-20">
+                <label for="inputPassword5" class="form-label">Date : </label>
+                 <input type="text" formControlName="date" [value]="date" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock" >
+                 <!-- <div *ngIf="submitted && f.date.errors" class="invalid-feedback">
+                  <div *ngIf="f.date.errors.required">date is required</div>
+              </div>  -->
+              </div>
+  
+              <div class="col-lg-6 p-t-20">
+                <label> Nature Reclamtion :</label>
+                <select formControlName="id_nature" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.id_nature.errors }">
+                  <option *ngFor="let n of natures" [value]="n.id"> {{n.nature}} </option>
+                </select>
+                <div *ngIf="submitted && f.id_nature.errors" class="invalid-feedback">
+                  <div *ngIf="f.id_nature.errors.required">nature is required</div>
+              </div> 
+               </div>
+
+               <div class="col-lg-6 p-t-20">
+                <label> Matricule :</label>
+                <select formControlName="matricule" (change)="selectedUser()" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.matricule.errors }">
+                  <option *ngFor="let u of users"   [value]="u.matricule"> {{u.matricule}} </option>
+
+                </select>
+                <div *ngIf="submitted && f.matricule.errors" class="invalid-feedback">
+                  <div *ngIf="f.matricule.errors.required">matricule is required</div>
+              </div>
+               </div>
+               <div class="col-lg-6 p-t-20">
+                <label for="inputPassword5" class="form-label">Nom : </label>
+                 <input type="text" formControlName="nom"  id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock" [ngClass]="{ 'is-invalid': submitted && f.nom.errors }">
+                 <div *ngIf="submitted && f.nom.errors" class="invalid-feedback">
+                  <div *ngIf="f.nom.errors.required">nom is required</div>
+              </div>
+              </div>
+              <div class="col-lg-6 p-t-20">
+                <label for="inputPassword5" class="form-label">Prénom : </label>
+                 <input type="text" formControlName="prenom"  id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock" [ngClass]="{ 'is-invalid': submitted && f.prenom.errors }">
+                 <div *ngIf="submitted && f.prenom.errors" class="invalid-feedback">
+                  <div *ngIf="f.prenom.errors.required">prenom is required</div>
+              </div>
+              </div>
+                
+                <!-- <div class="col-lg-6 p-t-20">
+                  <div class="mdl-textfield mdl-js-textfield txt-full-width">
+                    <input  class="" type="file" (change)="recuperphoto($event)"
+                     id="text7">
+                  </div>
+                </div> -->
+
+                <div class="col-lg-12 p-t-20">
+                  <div class="mdl-textfield mdl-js-textfield txt-full-width">
+                    <textarea formControlName="contenu" 
+                    class="form-control" rows="8" id="text7" [ngClass]="{ 'is-invalid': submitted && f.contenu.errors }"></textarea>
+                    <div *ngIf="submitted && f.contenu.errors" class="invalid-feedback">
+                      <div *ngIf="f.contenu.errors.required">reclamtion is required</div>
+                  </div>
+                    <!-- <label class="mdl-textfield__label" for="text7">Votre Reclamation</label> -->
+                  </div>
+                </div>  
+              
+            
+             
+              <div class="col-lg-12 p-t-20 text-center">
+                <button type="submit"
+                        class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 m-r-20 btn-pink">Valider</button>
+                <button type="button"
+                        class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 btn-default" routerLink="/page">Annuler</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>  
+
+    
+    <!-- <div  style="margin-left: 200px;" *ngIf="!show_section_demande"> 
+      <div class="box mx-5" >
+        <div class="container">
+             <div class="row">
+                 
+                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                   
+                        <div class="box-part text-center">
+                                                                                                                    
+                          <div class="text">
+                                <span> Votre reclamation {{reference}} a été envoyé avec success au service DRH..</span>
+                            </div>                        
+                         </div>
+                    </div>	 
+                    </div>
+                    </div>
+                    </div>
+                    
+    
+    </div>  -->
+
+  </div>
+</div>
+<!-- end page content -->

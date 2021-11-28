@@ -1,0 +1,87 @@
+<!-- start page content -->
+<div class="page-content-wrapper">
+  <div class="page-content">
+<!--    <div class="page-bar">-->
+<!--      <div class="page-title-breadcrumb">-->
+<!--        <div class=" pull-left">-->
+<!--          <div class="page-title">Add Library Assets</div>-->
+<!--        </div>-->
+<!--        <ol class="breadcrumb page-breadcrumb pull-right">-->
+<!--          <li><i class="fa fa-home"></i>&nbsp;<a class="parent-item"-->
+<!--                                                 href="index-2.html">Home</a>&nbsp;<i class="fa fa-angle-right"></i>-->
+<!--          </li>-->
+<!--          <li><a class="parent-item" href="#">Library</a>&nbsp;<i class="fa fa-angle-right"></i>-->
+<!--          </li>-->
+<!--          <li class="active">Add Library Assets</li>-->
+<!--        </ol>-->
+<!--      </div>-->
+<!--    </div>-->
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="card-box">
+          <div class="card-head">
+            <header>Ajouter une application</header>
+           <!-- <button id="panel-button"-->
+<!--                    class="mdl-button mdl-js-button mdl-button&#45;&#45;icon pull-right"-->
+<!--                    data-upgraded=",MaterialButton">-->
+<!--              <i class="material-icons">more_vert</i>-->
+<!--            </button>-->
+<!--            <ul class="mdl-menu mdl-menu&#45;&#45;bottom-right mdl-js-menu mdl-js-ripple-effect"-->
+<!--                data-mdl-for="panel-button">-->
+<!--              <li class="mdl-menu__item"><i class="material-icons">assistant_photo</i>Action-->
+<!--              </li>-->
+<!--              <li class="mdl-menu__item"><i class="material-icons">print</i>Another action-->
+<!--              </li>-->
+<!--              <li class="mdl-menu__item"><i class="material-icons">favorite</i>Something else-->
+<!--                here</li>-->
+<!--            </ul> -->
+          </div>
+          <div class="card-body row">
+            <form action="" [formGroup]="form" (ngSubmit)="saveApplication()">
+              <div class="col-lg-8 col-md-8 p-t-20" style="width: 500px !important;">
+                <div
+                  class="col-md-8 mdl-textfield mdl-js-textfield mdl-textfield--floating-label 
+                  txt-full-width">
+                  <label class="form-label">Nom</label>
+                  <input formControlName="nom" class="mdl-textfield__input" type="text" id="txtTitle">
+                </div>
+              </div>
+              <div class="col-lg-8 p-t-20">
+                <div
+                  class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                  <label class="form-label">Propriétaire</label>
+                  <input formControlName="propretaire" class="mdl-textfield__input" type="text" id="txtTitle">
+                </div>
+              </div>
+  
+              <div class="col-lg-8 p-t-20">
+                <div
+                  class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height txt-full-width">
+                  <label class="form-label">Profils</label>
+                  <!-- <input class="mdl-textfield__input" type="text" id="list8" value="" readonly
+                         tabIndex="-1"> -->
+  
+                    <select class="form-control" formControlName="profil" >
+                    <option class="mdl-menu__item" value="profil 01" data-val="DE">profil 01</option>
+                    <option class="mdl-menu__item" value="profil 02" data-val="BY">profil 02</option>
+                    <option class="mdl-menu__item" value="profil 03" data-val="BY">profil 03</option>
+                    <option class="mdl-menu__item" value="profil 04" data-val="BY">profil 04</option>
+                    </select>
+  
+                </div>
+              </div>
+  
+              <div class="col-lg-12 p-t-20 text-center">
+                <button type="submit"
+                        class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 m-r-20 btn-pink">Ajouter</button>
+                <button type="button" (click)="reset()"
+                        class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 btn-default">Annuler</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end page content -->

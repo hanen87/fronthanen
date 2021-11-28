@@ -1,0 +1,184 @@
+<!-- start page content -->
+<div class="page-content-wrapper">
+  <div class="page-content">
+    <div class="page-bar">
+      <div class="page-title-breadcrumb">
+<!--        <div class=" pull-left">-->
+<!--          <div class="page-title">Library Assets</div>-->
+<!--        </div>-->
+<!--        <ol class="breadcrumb page-breadcrumb pull-right">-->
+<!--          <li><i class="fa fa-home"></i>&nbsp;<a class="parent-item"-->
+<!--                                                 href="index-2.html">Home</a>&nbsp;<i class="fa fa-angle-right"></i>-->
+<!--          </li>-->
+<!--          <li><a class="parent-item" href="#">Library</a>&nbsp;<i class="fa fa-angle-right"></i>-->
+<!--          </li>-->
+<!--          <li class="active">Library Assets</li>-->
+<!--        </ol>-->
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12 col-md-12 col-xl-12">
+        <div class="card-box">
+          <div class="card-head">
+            <header>Mes demandes It</header>
+            <button id="sdntmenu" class="mdl-button mdl-js-button mdl-button--icon pull-right"
+                    data-upgraded=",MaterialButton">
+<!--              <i class="material-icons">more_vert</i>-->
+            </button>
+<!--            <ul class="mdl-menu mdl-menu&#45;&#45;bottom-right mdl-js-menu mdl-js-ripple-effect"-->
+<!--                data-mdl-for="sdntmenu">-->
+<!--              <li class="mdl-menu__item"><i class="material-icons">assistant_photo</i>Action-->
+<!--              </li>-->
+<!--              <li class="mdl-menu__item"><i class="material-icons">print</i>Another action-->
+<!--              </li>-->
+<!--              <li class="mdl-menu__item"><i class="material-icons">favorite</i>Something else-->
+<!--                here</li>-->
+<!--            </ul>-->
+          </div>
+          <div class="card-body ">
+            <div class="row">
+              <div class="col-md-6 col-sm-6 col-6">
+                <div class="btn-group">
+<!--                  <a href="add_professor.html" id="addRow" class="btn btn-info">-->
+<!--                    Add New <i class="fa fa-plus"></i>-->
+<!--                  </a>-->
+                </div>
+              </div>
+              <div class="col-md-6 col-sm-6 col-6">
+                <div class="btn-group pull-right">
+                  <div class="row mb-3 text-center">
+
+                    <div id="toolbar" class="col">
+                      <select class="form-control" 
+                       [(ngModel)]="status_selected" 
+                      (change)="filter_by_status()"  
+                      
+                      >
+                        <option value="en attente">En attente</option>
+                        <option value="validé">Accepte</option>
+                        <option value="annulé">Annule</option>
+
+                      </select>
+                    </div>
+
+                    <div id="toolbar2" class="col">
+                     <input type="date" 
+                     
+                       name="date_selected" class="form-control" >
+                        
+                    </div>
+                  </div>
+<!--                  <ul class="dropdown-menu pull-right">-->
+<!--                    <li>-->
+<!--                      <a href="javascript:;">-->
+<!--                        <i class="fa fa-print"></i> Print </a>-->
+<!--                    </li>-->
+<!--                    <li>-->
+<!--                      <a href="javascript:;">-->
+<!--                        <i class="fa fa-file-pdf-o"></i> Save as PDF </a>-->
+<!--                    </li>-->
+<!--                    <li>-->
+<!--                      <a href="javascript:;">-->
+<!--                        <i class="fa fa-file-excel-o"></i> Export to Excel </a>-->
+<!--                    </li>-->
+<!--                  </ul>-->
+                </div>
+              </div>
+            </div>
+            <div class="table-scrollable">
+              <table
+                class="table table-striped table-bordered table-hover table-checkable order-column valign-middle"
+                id="example4">
+                <thead>
+                <tr>
+                  <th style="min-width: 120px !important;">Reference</th>
+                  <th>Demandeur</th>
+                  <th>Date</th>
+                  <th>Pour</th>
+                  <th>Nom & Prenom</th>
+                  <th>Matricule</th>
+                  <th>Remarque</th>
+                  <th> Date Effect </th>
+                  <th>Status</th>
+                  <th>Type</th>
+
+                  <!-- <th></th> -->
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="odd" *ngFor="let demande of demandes_it;let index=index" >
+                  <td [routerLink]="['/user-demandes/det-demande-it',demande.id]">{{demande.reference}}</td>
+                  <td>{{demande.user?.firstName}} {{demande?.user.lastName}} </td>
+                  <td>{{demande.date|date}}</td> 
+                  <td>{{demande.pour}}</td>
+                  <td>{{demande.nom}} {{demande.prenom}}</td>
+                  <td>{{demande.matricule}}</td>
+                  <td>{{demande.remarque}}</td>
+                  <td> {{demande.date_effect}} </td>
+                  <td>{{demande.status}}</td> 
+                  <td>{{demande.type}}</td>                 
+
+                  <!-- <td>
+                    <a class="btn btn-primary btn-sm" (click)="valider_demande(demande.id)" 
+                       
+                       > 
+                       Valider
+                    </a>
+                    <button (click)="annuler_demande(demande.id)" class="btn btn-danger btn-sm">
+                    annuler 
+                    </button>
+                  </td>  -->
+                  <!-- <td>
+                    <button *ngIf="isAdmin()"
+                       class="btn btn-primary btn-xs" (click)="valider_demande(demande.id)" >
+                      <i class="fa fa-check" aria-hidden="true"></i> 
+                  </button>
+                    <button *ngIf="isAdmin()" class="btn btn-danger btn-xs" (click)="annuler_demande(demande.id)">
+                      <i class="fa fa-trash" aria-hidden="true"></i>
+                    </button>
+                  </td> -->
+
+                </tr>
+            
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end page content -->
+
+
+<div class="modal" tabindex="-1" role="dialog" id="exampleModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Demande </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <label>Titre</label>
+        <input class="form-control" type="text">
+
+        <label>Date</label>
+        <input class="form-control" type="date">
+
+        <label>Type</label>
+        <input class="form-control" type="text">
+
+        <label>Status</label>
+        <input class="form-control" type="text">
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary">Valider</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+      </div>
+    </div>
+  </div>
+</div>

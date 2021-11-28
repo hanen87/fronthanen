@@ -1,0 +1,386 @@
+<!-- start page content -->
+<div class="page-content-wrapper">
+    <div class="page-content">
+        <div class="page-bar">
+            <div class="page-title-breadcrumb">
+                <div class=" pull-left" *ngIf="show_section_demande" >
+                    <div class="page-title">Ajouter une demande d'attestation
+                    </div>
+                </div>
+                <ol class="breadcrumb page-breadcrumb pull-right"></ol>
+            </div>
+        </div>
+        <div class="row mt-5" *ngIf=show_section_demande>
+            <div class="col-sm-12 col-md-12">
+                <div class="card-box">
+                    <div class="card-head">
+                        <div class="card-body mx-5" >                                                        
+                                    <div class="row mx-2">
+                                        <div class="col-md-6 mt-2 d-flex  form-inline">
+                                            <div class="row">
+                                                <div class="col md-8 col" style="margin-right:30px">
+                                                    <label class="m-t-20">
+                                                      Reference:</label>
+                                                  </div> 
+      
+                                                  <div class="col md-4 col mt-3">  
+                                                    <input class="form-control" [value]="reference" type="text">
+                                                  </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 mt-2 d-flex form-inline">
+                                            <div class="row">
+                                                <div class="col md-8 col" style="margin-right:90px">
+                                                    <label class="m-t-20">
+                                                      Demandeur:</label>
+                                                  </div> 
+      
+                                                  <div class="col md-4 col mt-3">  
+                                                    <input class="form-control" value="{{user_connect.firstName}}" type="text">      
+                                                  </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                  
+                                    <div class="row mx-2">
+                                        <div class="col-md-6 mt-2 d-flex  form-inline">
+
+                                            <div class="row">
+                                                <div class="col md-8 col" style="margin-right:65px">
+                                                    <label class="m-t-20">
+                                                      Date:</label>
+                                                  </div> 
+      
+                                                  <div class="col md-4 col mt-3">  
+                                                    <input class="form-control"  [value]="date" type="text">
+                                                  </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                  
+                                     
+                                   <div class="" >
+                                    <div class="right mt-5" style="margin-left:1000px !important">
+                                        <button (click)="save_ligne_demande_attestation()" class="btn btn-primary btn-xs">
+                                            <i class="fa fa-plus" style="color: white !important;"></i> 
+                                          ajouter </button>
+                                    </div> 
+                                   </div>
+                                  
+                                    <div class="table-scrollable" >
+                                        <form [formGroup]="form"> 
+
+                                        <table
+                                          class="table table-striped table-bordered table-hover table-checkable order-column valign-middle"
+                                          id="example4">
+                                          <thead>
+                                          <tr>
+                                            <th style="min-width:120px">Réference</th>
+                                            <th>Etablissement</th>
+                                            <th>Matricule</th>
+                                            <th>Nom&prenom</th>
+                                            <th>type de demande</th>
+                                            <th>Motif d'attestation</th>
+                                            <th>Date de signature</th>
+                                            <th>Commentaire</th>
+                                          </tr>
+                                          </thead>
+                                          <tbody>
+                                          <tr class="odd gradeX"> 
+                                            <td class="left" style="min-width:140px">                                            
+                                             <input type="text" value="{{reference}}/{{i}}" class="form-control" />                                        
+                                            </td>
+                
+                                         <td class="left">
+                                            <input formControlName="etablissement" class="form-control">
+                                        </td>
+
+                                      
+
+                                        <td class="left">
+                                            <select class="form-control" (change)="selectedUser()" formControlName="matricule">
+                                              <option *ngFor="let u of users"   [value]="u.matricule"> {{u.matricule}} </option>
+                                            </select>
+                                        </td> 
+
+                                        <td class="left">                                             
+                                            <input formControlName="nom" class="form-control">
+                                           
+                                            </td>  
+                                            <td class="left">
+
+                                                    <select formControlName="type" class="form-control"
+                                                     (change)="selected_equipe($event)" required>
+                                                        <option value="Attestation de Pret">
+                                                            Attestation de pret
+                                                        </option>
+                                                        <option value="Attestation de badge">
+                                                              Badge
+                                                        </option>
+                                                        <option value="Attestation de Travail">
+                                                            Attestation de travail
+                                                        </option>
+                                                        
+                                                        <option value="Attestation de l'IRPP">
+                                                            Attestation de l'IRPP
+                                                        </option>
+                                                       
+                                                        <option value="Attestation de stage">
+                                                            Attestation de stage
+                                                        </option>
+                                                        <option value="Attestation de salaire">
+                                                            Attestation de salaire
+                                                        </option>
+                                                        
+
+
+
+
+                                                    </select>
+                                            </td>
+                                            
+                
+                                        
+                                            <td class="left">                                             
+                                            <select formControlName="motif" class="form-control">
+                                                <option value="CIN">CIN</option>
+                                                <option value="Pret Bancaire">Crédit Bancaire</option>
+                                                <option value="Autres">Autres</option>
+                                                <option value="Passeport">Passeport</option>
+
+
+                                            </select>
+                                            </td>  
+                                            
+                                            
+                                            <td class="left">                                             
+                                                <input formControlName="date_signature_contrat" class="form-control">
+                                               
+                                                </td>  
+
+                                            <td class="left">   
+
+                                            <textarea rows="3" formControlName="commentaire" class="form-control">
+                                            </textarea>  
+                                             </td>   
+
+                                         
+                                          </tr>
+                
+                
+                                          </tbody>
+                                        </table>
+                                    </form>
+
+                                      </div> 
+
+                                        
+                            <!-- <div class="table-scrollable" style="margin: 10px !important;"  >
+                                <table  class="table table-striped table-bordered table-hover table-checkable order-column valign-middle" id="example4">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th style="width: 200px !important;">
+                                                Reference</th>
+                                            <th>
+                                                Type de demande
+                                            </th>
+                                            <th>
+                                                Motif d'attestation
+                                            </th>
+                                            <th>
+                                                Commentaire
+                                            </th> 
+                                            <th> 
+                                             
+                                            </th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="odd gradeX" *ngFor="let demande of added_lignes;let index=index">
+                                            <td></td>
+                                            <td>{{demande.reference}}</td>
+                                            <td>
+                                                <a href="">
+                                                    {{demande.type}}
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a href="">
+                                                    {{demande.motif}}</a>
+                                            </td>
+                                            <td>
+                                                <a href="">
+                                                    {{demande.commentaire}}</a>
+                                            </td> 
+                                            <td>
+                                             
+                                                  <button (click)="supprimer_demande(index)" class="btn btn-danger btn-xs">
+                                                    <i class="fa fa-trash-o" style="color: white !important;"></i>
+                                                  </button>
+                                          </td>
+                                        </tr>
+
+
+                                    </tbody>
+                                </table>
+
+                            </div> -->
+
+                            <div class="table-scrollable" *ngIf="added_lignes.length>0">
+                                <table
+                                  class="table table-striped table-bordered table-hover table-checkable order-column valign-middle"
+                                  id="example4">
+                                  <thead>
+                                  <tr>
+                                    <th style="min-width:140px">Réference</th>
+                                    <th>Etablissement</th>
+                                    <th>Matricule</th>
+                                    <th>Nom&Prenom</th>       
+                                    <th>type de demande</th>
+                                    <th>Motif d'attestation</th>
+                                    <th>Date de signature</th>
+                                    <th>Commentaire</th>
+                                  </tr>
+                                  </thead>
+                                  <tbody>
+                                  <tr class="odd gradeX" *ngFor="let demande of added_lignes;let index=index">                               
+        
+                                    <td style="min-width:180px" style="color: #0d47a1">
+                                        <input value="{{demande.reference}}" class="form-control">
+                                       </td>
+                                    <td class="left"><select class="form-control">
+                                      <option>{{demande.etablissement}}</option>
+                                    </select></td>
+                                    <td  >  
+                                      <input value="{{demande.matricule}}" class="form-control">
+
+
+                                    </td>
+        
+                                    <td class="left" style="color: #0d47a1">
+                                      <input value="{{demande.nom}}" class="form-control">
+
+                                    </td>
+                                    <td class="left"><select class="form-control">
+                                      <option>{{demande.type}}</option>
+                                    </select></td>
+        
+                                    <td class="left"><select class="form-control">
+                                      <option> {{demande.motif}} </option>
+                                    </select></td>
+                                    <td>
+                                        <input value="{{demande.date_contrat|date}}" class="form-control">
+
+                                    </td> 
+                                 
+                                
+                                    <td class="left">
+                                        <textarea class="form-control" rows="1"> 
+                                        {{demande.commentaire}}
+
+                                    </textarea></td>
+                                    <td>
+                                             
+                                        <button (click)="supprimer_demande(demande,index)" class="btn btn-danger btn-xs">
+                                          <i class="fa fa-trash-o" style="color: white !important;"></i>
+                                        </button>
+                                   </td>
+        
+                                  </tr>
+        
+        
+                                  </tbody>
+                                </table>
+                              </div>
+                            <div class="col-lg-12 p-t-20 text-center">
+                                <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 m-r-20 btn-pink" (click)="save()">Envoyer DRH</button>
+                                <button type="button" routerLink="/page" (click)="supprimer_demande(index)"  class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 btn-default">Quitter</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> 
+
+        <!-- <div  style="margin-left: 200px;" *ngIf="!show_section_demande"> 
+          <div class="box mx-5" >
+            <div class="container">
+                 <div class="row">
+                     
+                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                       
+                            <div class="box-part text-center">
+                                                                                                                        
+                              <div class="text">
+                                    <span>
+                                         Votre demande a été envoyé avec success au service DRH.
+                                         .</span>
+                                </div>
+                                
+                                 <a href="#">un Email sera envoye</a> 
+                                
+                             </div>
+                        </div>	 
+                        </div>
+                        </div>
+                        </div>
+                        
+        
+        </div> -->
+    </div>
+    <!-- end page content -->
+
+
+    <!-- <ng-template #content let-modal>
+        <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title"> Ajouter Nouvelle ligne de demande </h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="form">
+
+                <label>
+                    Type d'attestation :</label>
+                <div class="form-group">
+                    <select formControlName="type" class="custom-select"
+                     (change)="selected_equipe($event)" required>
+                        <option value="Attestation de Pret">
+                            Attestation de pret
+                        </option>
+                        <option value="Attestation de badge">
+                            Attestation de badge
+                        </option>
+                        <option value="Attestation de Travail">
+                            Attestation de travail
+                        </option>
+                    </select>
+                </div>
+
+                <label>
+                    Motif d'attestation :</label>
+                <div class="form-group">
+                    <select formControlName="motif" class="custom-select" required>
+                        <option value="CIN">CIN</option>
+                        <option value="Pret Bancaire">Pret Bancaire</option>
+                    </select>
+                </div>
+
+                <label>
+                    Commentaire :</label>
+
+                <textarea formControlName="commentaire" class="form-control h-150px" rows="6" id="comment"></textarea>
+
+            </form>
+
+        </div>
+        <div class="modal-footer">
+            <button type="submit" (click)="save_ligne_demande_attestation()" class="btn btn-outline-dark">Ajouter</button>
+            <button type="submit" (click)="modal.close('Save click')" class="btn btn-outline-dark">Annuler</button>
+
+        </div>
+    </ng-template> -->

@@ -1,0 +1,256 @@
+<form [formGroup]="form" (ngSubmit)="sendDemandeActif()"> 
+
+  <div class="page-content-wrapper">
+    <div class="page-content">
+      <div class="page-bar" *ngIf="show_section_demande">
+        <div class="page-title-breadcrumb">
+          <div class="card">
+            <div class="card-body">
+              <div class="card-head">
+                <header class="mb-3">Demande d’actif IT 
+                </header></div>
+             <fieldset style="border: 2px solid rgb(187, 186, 186);border-radius: 10px;">
+              <legend class="ml-5"> Demandeur </legend>
+  
+              <div class="row ml-5 mr-5 form-material">
+                <div class="col-md-12 d-flex">
+                  <label class="form-control">Demande pour : </label>
+                  <select  (change)="getDemandeurInfo()" class="form-control mb-2" formControlName="pour">
+                    <option value="moi"> Moi </option>
+                    <option value="Nouvelle Recrue"> Nouvelle Recrue </option>
+                    <option value="Interminaire"> Intérimaire </option>
+                    <option value="Surbonne"> Subordonné </option>
+
+                  </select>
+                </div>
+                <div class="col-md-12 mt-2 d-flex">
+  
+                  <label class="form-control"> Matricule:</label>
+                  <input class="form-control" formControlName="matricule" (change)="getDemandeurInfo()"
+                   value="{{matricule}}" type="text" >
+                </div>
+                <div class="col-md-6">
+                  <label class="m-t-20">Nom  :</label>
+                  <input class="form-control" value={{nom}} type="text">
+                </div> 
+                <div class="col-md-6">
+  
+                  <label class="m-t-20">Prénom :</label>
+                  <input class="form-control" value={{prenom}} type="text">
+                </div>
+                  <div class="col-md-6">
+  
+                  <label class="m-t-20">Fonction :</label>
+                  <input class="form-control" value={{fonction}} type="text">
+                  </div>
+                  <div class="col-md-6">
+  
+                  <label class="form-control"> Etablissement :</label>
+                  <input class="form-control" value={{etablissement}} type="text" >
+  
+                </div>
+  
+              </div>
+             </fieldset>
+            </div>
+          </div>
+  <!-- start page content -->
+  
+          <div class="row">
+            <div class="col-md-12">
+              <div class="tabbable-line">
+                <div class="tab-content">
+                  <div class="tab-pane active fontawesome-demo" id="tab1">
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="card card-box">                    
+                         <div class="card-body ">
+                            <div class="row mr-5 ml-5">
+                              <div class="col-md-6 col-sm-6 col-6">
+                                <div class="btn-group">
+                                  <!--                            <a href="add_professor.html" id="addRow"-->
+                                  <!--                               class="btn btn-info">-->
+                                  <!--                              Add New <i class="fa fa-plus"></i>-->
+                                  <!--                            </a>-->
+                                </div>
+                              </div>
+                              <!--                        <div class="col-md-6 col-sm-6 col-6">-->
+                              <!--                          <div class="btn-group pull-right">-->
+                              <!--                            <a class="btn deepPink-bgcolor  btn-outline dropdown-toggle"-->
+                              <!--                               data-toggle="dropdown">Tools-->
+                              <!--                              <i class="fa fa-angle-down"></i>-->
+                              <!--                            </a>-->
+                              <!--                            <ul class="dropdown-menu pull-right">-->
+                              <!--                              <li>-->
+                              <!--                                <a href="javascript:;">-->
+                              <!--                                  <i class="fa fa-print"></i> Print </a>-->
+                              <!--                              </li>-->
+                              <!--                              <li>-->
+                              <!--                                <a href="javascript:;">-->
+                              <!--                                  <i class="fa fa-file-pdf-o"></i> Save as-->
+                              <!--                                  PDF </a>-->
+                              <!--                              </li>-->
+                              <!--                              <li>-->
+                              <!--                                <a href="javascript:;">-->
+                              <!--                                  <i class="fa fa-file-excel-o"></i>-->
+                              <!--                                  Export to Excel </a>-->
+                              <!--                              </li>-->
+                              <!--                            </ul>-->
+                              <!--                          </div>-->
+                              <!--                        </div>-->
+                            </div> 
+                            <fieldset class="pt-5 pr-5 pl-5" style="border: 2px solid rgb(187, 186, 186);border-radius: 10px;">
+                              <legend class="ml-5"> Actif </legend>
+  
+                              <div class="row form-material mx-5">
+                                <div class="col-md-3">
+                                  <label class="form-control">Actif</label>
+                                  <select class="form-control" formControlName="actif">
+                                    <option *ngFor="let actif of actifs" 
+                                    [value]="actif.id"> {{actif.name}}</option>
+                                  
+                                  </select>
+                                  
+                                           
+                                </div>
+                                
+                                <div class="col-md-3">
+                                  <label class="form-control">Catégorie </label>
+                                  <select class="form-control"  formControlName="categorie">
+                           
+                                    <option *ngFor="let categorie of categories" 
+                                    [value]="categorie.libelle"> {{categorie.categorie}}</option>
+                                  </select>
+                                  
+                                 
+                  
+                                </div>
+                                <div class="col-md-3">
+                                  <label class="form-control">Nouveau/Remplacement </label>
+                                    
+                                  <select class="form-control" formControlName="motif">
+                                    <option value="Remplacement"> Remplacement </option>
+                           
+                                    <option value="Nouveau"> Nouveau </option>
+                                  </select>
+                                 
+                  
+                                </div>
+                                <div class="col-md-3">
+                                  <a class="btn btn-primary" 
+                                  (click)="Ajouter_Actif_to_SelectedActifs()"> <i class="fa text-white fa-plus "></i> ajouter</a>
+                                </div>
+                              </div>
+                            <div class="table-scrollable" *ngIf="added_actifs.length>0">
+                              <table
+                                class="table table-striped table-bordered table-hover table-checkable order-column valign-middle"
+                                id="example4">
+                                <thead>
+                                <tr>
+  
+                                  <th> Actif</th>
+                                  <th> Categorie </th>
+                                  <th> Nouveau/Remplacement </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr class="odd gradeX" *ngFor="let actif of categories">
+                                  <td>{{actif.libelle}}</td>
+                                  <td><a href="">
+                                   {{actif.categorie}} </a></td>
+                                  <td ><a href="">
+                                    {{motif1}}</a>
+                                  </td>
+
+                                    <td>
+                                      <button (click)="supprimer_demande(index)"
+                                      class="btn text-white btn-danger btn-xs">
+                                         <i class="text-white fa fa-trash-o "></i> 
+                                       </button>
+                                    </td>
+                                </tr>
+                     
+  
+                                </tbody>
+                              </table>
+                            </div>
+                            </fieldset> 
+
+                            
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+  
+                </div>
+              </div>
+            </div>
+          </div> 
+
+         
+  <!-- end page content -->
+  
+           
+        <div class="card">
+          <div class="card-body">
+
+            <div class="card-head">
+              <fieldset class="pb-5" style="border: 2px solid rgb(187, 186, 186);border-radius: 10px;">
+                <legend class="ml-5"> Remarque </legend>
+            <div class="row  mr-5 ml-5">
+              <div class="col-md-12">
+                <textarea class="form-control" formControlName="remarque" rows="5">
+
+                </textarea>
+
+              </div>
+           
+
+            </div>
+              </fieldset>
+          </div>
+
+        </div>
+        </div> 
+
+  
+          <div class="col-lg-12 p-t-20 text-center">
+            <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 m-r-20 btn-pink">Enregistrer</button>
+            <button type="button" (click)="reset()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 btn-default">Annuler</button>
+          </div>
+  
+  
+        </div>
+      </div> 
+
+
+<!-- 
+      <div  style="margin-left: 200px;" *ngIf="!show_section_demande"> 
+        <div class="box mx-5" >
+          <div class="container">
+               <div class="row">
+                   
+                      <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                     
+                          <div class="box-part text-center">
+                                                                                                                      
+                            <div class="text">
+                                  <span> Votre demande {{reference}} a été envoyé avec success au service DRH..</span>
+                              </div>                        
+                           </div>
+                      </div>	 
+                      </div>
+                      </div>
+                      </div>
+                      
+      
+      </div>  -->
+
+
+
+    </div>
+  </div>
+</form>  
+
+

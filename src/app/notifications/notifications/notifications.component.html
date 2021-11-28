@@ -1,0 +1,40 @@
+
+    <div class="page-content-wrapper">
+        <div class="page-content">
+           <div class="row mx-3">
+               <h2 class="text-white"> 
+                   Tous les Notifications 
+               </h2>
+           </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="tabbable-line"> 
+                <div class="alert alert" style="background-color: rgb(130, 142, 192);" *ngFor="let notification of notifications">
+                    <div class="container">
+                        <div class="alert-icon">
+                            <i class="material-icons">info_outline</i>
+                        </div>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true"><i class="material-icons">clear</i></span>
+                        </button>
+            
+                        <b>Info Notification:</b> 
+                        
+                        
+                      votre demande {{notification.ligne.type}} a ete annulé.
+
+                    </div> 
+                    <div class="font-weight-bold">
+                        <div class="small text-gray-500">{{notification.date|date}}</div>
+                    </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+    
+
+
+ 

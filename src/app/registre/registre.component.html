@@ -1,0 +1,184 @@
+<!-- start page content -->
+<div class="page-content-wrapper">
+    <div class="page-content">
+      <div class="page-bar">
+        <div class="page-title-breadcrumb">
+          <div class=" pull-left">
+            <div class="page-title">Ajouter un utilisateur</div>
+          </div>
+          <ol class="breadcrumb page-breadcrumb pull-right">
+  <!--          <li><i class="fa fa-home"></i>&nbsp;<a class="parent-item"-->
+  <!--                                                 href="index-2.html">Home</a>&nbsp;<i class="fa fa-angle-right"></i>-->
+  <!--          </li>-->
+  <!--          <li><a class="parent-item" href="#">Library</a>&nbsp;<i class="fa fa-angle-right"></i>-->
+  <!--          </li>-->
+          </ol>
+        </div>
+      </div>
+      <div class="row"  >
+        <div class="col-sm-12">
+          <div class="card-box px-5 mx-5">
+            <div class="card-head">
+  <!--            <header>Add Library Assets</header>-->
+  <!--            <button id="panel-button"-->
+  <!--                    class="mdl-button mdl-js-button mdl-button&#45;&#45;icon pull-right"-->
+  <!--                    data-upgraded=",MaterialButton">-->
+  <!--              <i class="material-icons">more_vert</i>-->
+  <!--            </button>-->
+  <!--            <ul class="mdl-menu mdl-menu&#45;&#45;bottom-right mdl-js-menu mdl-js-ripple-effect"-->
+  <!--                data-mdl-for="panel-button">-->
+  <!--              <li class="mdl-menu__item"><i class="material-icons">assistant_photo</i>Action-->
+  <!--              </li>-->
+  <!--              <li class="mdl-menu__item"><i class="material-icons">print</i>Another action-->
+  <!--              </li>-->
+  <!--              <li class="mdl-menu__item"><i class="material-icons">favorite</i>Something else-->
+  <!--                here</li>-->
+  <!--            </ul>-->
+            </div>
+            <div class="card-body row">
+             <form class="row" [formGroup]="RegisterForm" (ngSubmit)="onSubmit()">
+  
+                <div class="col-lg-6 p-t-20">  
+                    <label> username:</label>
+                   <input type="text"  formControlName="username" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock" [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
+                    <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                      <div *ngIf="f.username.errors.required">username is required</div>
+                  </div> 
+                </div>
+                
+             
+                 
+                <div class="col-lg-6 p-t-20">
+                  <label for="inputPassword5" class="form-label">password : </label>
+                  <input type="text"  formControlName="password" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock" [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+                  <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                    <div *ngIf="f.password.errors.required">password is required</div>
+                </div> 
+               </div>   
+                <div class="col-lg-6 p-t-20">
+                  <label for="inputPassword5" class="form-label">firstName : </label>
+                   <input type="text" formControlName="firstName"  id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }">
+                   <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+                    <div *ngIf="f.firstName.errors.required">firstName is required</div>
+                </div> 
+                </div>
+    
+                <div class="col-lg-6 p-t-20">
+                  <label> lastName :</label>
+                  <input type="text" formControlName="lastName"  id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }">
+                   <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+                    <div *ngIf="f.lastName.errors.required">lastName is required</div>
+                </div> 
+                  
+                 </div>
+  
+                 <div class="col-lg-6 p-t-20">
+                  <label> Matricule :</label>
+                  <input type="text" formControlName="matricule"  id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock" [ngClass]="{ 'is-invalid': submitted && f.matricule.errors }">
+                  <div *ngIf="submitted && f.matricule.errors" class="invalid-feedback">
+                    <div *ngIf="f.matricule.errors.required">matricule is required</div>
+                </div>
+                 </div>
+                 <div class="col-lg-6 p-t-20">
+                  <label for="inputPassword5" class="form-label">fonction : </label>
+                   <input type="text" formControlName="fonction"  id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock" [ngClass]="{ 'is-invalid': submitted && f.fonction.errors }">
+                   <div *ngIf="submitted && f.fonction.errors" class="invalid-feedback">
+                    <div *ngIf="f.fonction.errors.required">fonction is required</div>
+                </div>
+                </div>
+                <!-- <div class="col-lg-6 p-t-20">
+                  <label for="inputPassword5" class="form-label">magasin : </label>
+                   <input type="text" formControlName="magasin"  id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock" [ngClass]="{ 'is-invalid': submitted && f.magasin.errors }">
+                   <div *ngIf="submitted && f.magasin.errors" class="invalid-feedback">
+                    <div *ngIf="f.magasin.errors.required">magasin is required</div>
+                </div>
+                </div> -->
+
+                <div class="col-lg-6 p-t-20">
+                    <label for="inputPassword5" class="form-label">Date_contrat : </label>
+                     <input type="date" formControlName="date_contrat"  id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock" [ngClass]="{ 'is-invalid': submitted && f.date_contrat.errors }">
+                     <div *ngIf="submitted && f.date_contrat.errors" class="invalid-feedback">
+                      <div *ngIf="f.date_contrat.errors.required">Date_contrat is required</div>
+                  </div>
+                  </div>
+                  <div class="col-lg-6 p-t-20">
+                    <label for="inputPassword5" class="form-label">Etablissement : </label>
+                    <select formControlName="id_etablisement" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.id_etablisement.errors }">
+                        <option *ngFor="let e of etablissements" [value]="e.id"> {{e.name}} </option>
+                      </select>
+                     <div *ngIf="submitted && f.id_etablisement.errors" class="invalid-feedback">
+                      <div *ngIf="f.id_etablisement.errors.required">etablissement is required</div>
+                  </div>
+                  </div>
+
+                  <div class="col-lg-6 p-t-20">
+                    <label for="inputPassword5" class="form-label">profil : </label>
+                     <!-- <input type="text" formControlName="profil"  id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock" [ngClass]="{ 'is-invalid': submitted && f.profil.errors }"> -->
+                     <select formControlName="profil" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.profil.errors }">
+                     <option>GRH</option>
+                     <option>ADMIN</option>
+                     <option>BureauOrdre</option>
+                     <option>Employee</option>
+                    </select>
+                     <div *ngIf="submitted && f.profil.errors" class="invalid-feedback">
+                      <div *ngIf="f.profil.errors.required">profil is required</div>
+                  </div>
+                  </div>
+                  <div class="col-lg-6 p-t-20" *ngIf="isGRH()">
+                    <label for="inputPassword5" class="form-label">equipe : </label>
+                     <!-- <input type="text" formControlName="equipe"  id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock" [ngClass]="{ 'is-invalid': submitted && f.equipe.errors }"> -->
+                     <select formControlName="equipe" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.equipe.errors }">
+                      <option>Administratif</option>
+                      <option>Social</option>
+                      <option>Paie</option>
+                      <!-- <option>Employee</option> -->
+                     </select>
+                     <div *ngIf="submitted && f.equipe.errors" class="invalid-feedback">
+                      <div *ngIf="f.equipe.errors.required">equipe is required</div>
+                  </div>
+                  </div>
+                  
+                 
+  
+               
+                
+              
+               
+                <div class="col-lg-12 p-t-20 text-center">
+                  <button type="submit"
+                          class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 m-r-20 btn-pink" >Valider</button>
+                  <button type="button"
+                          class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 btn-default" routerLink="/page">Annuler</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>  
+  
+      
+      <!-- <div  style="margin-left: 200px;" *ngIf="!show_section_demande"> 
+        <div class="box mx-5" >
+          <div class="container">
+               <div class="row">
+                   
+                      <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                     
+                          <div class="box-part text-center">
+                                                                                                                      
+                            <div class="text">
+                                  <span> Votre reclamation {{reference}} a été envoyé avec success au service DRH..</span>
+                              </div>                        
+                           </div>
+                      </div>	 
+                      </div>
+                      </div>
+                      </div>
+                      
+      
+      </div>  -->
+  
+    </div>
+  </div>
+  <!-- end page content -->
+  
